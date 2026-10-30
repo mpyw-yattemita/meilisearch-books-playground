@@ -1,0 +1,20 @@
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.56.0
+    ports:
+      - "7700:7700"
+    environment:
+      # development enables the built-in search preview UI at http://localhost:7700
+      MEILI_ENV: development
+      MEILI_MASTER_KEY: local-dev-master-key-change-me
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - meili_data:/meili_data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:7700/health"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+volumes:
+  meili_data:

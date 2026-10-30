@@ -1,0 +1,12 @@
+# declscope gives this module pseudo visibility levels between exported and
+# unexported, so that a helper written for one file stays in that file.
+# https://github.com/mpyw/declscope
+#
+# boundary is on by default and stays enabled here.
+rules:
+  naming:
+    # ondemand asks for the namespace in the name only once a package holds
+    # a second one.
+    qualify: ondemand
+    # Exported names are checked too.
+    exported: true
